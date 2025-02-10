@@ -424,7 +424,7 @@ class WebKitWebViewController extends PlatformWebViewController {
 
     _javaScriptChannelParams[webKitParams.name] = webKitParams;
 
-    final String wrapperSource = "
+    final String wrapperSource = """
 (function() {
     window.\(webKitParams.name) = webkit.messageHandlers.\(webKitParams.name);
     try {
@@ -433,7 +433,7 @@ class WebKitWebViewController extends PlatformWebViewController {
         console.warn("Cannot delete SharedWorker:", e);
     }
 })();
-";
+""";
     final WKUserScript wrapperScript =
         _webKitParams.webKitProxy.newWKUserScript(
       source: wrapperSource,
